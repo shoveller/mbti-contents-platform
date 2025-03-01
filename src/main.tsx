@@ -13,6 +13,12 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Outlet />}>
       <Route index lazy={() => import("@/page/Main.tsx")} />
+      <Route path=":testParam" lazy={() => import("@/page/Test")}>
+        <Route
+          path="result/:resultParam"
+          lazy={() => import("@/page/Result")}
+        />
+      </Route>
     </Route>,
   ),
 );
