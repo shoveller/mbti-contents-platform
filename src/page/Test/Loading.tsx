@@ -1,5 +1,6 @@
 const Loading = () => {
-  return <h1>로딩중</h1>
-}
+  return <h1>로딩중</h1>;
+};
 
-export default Loading
+export const Component = Loading;
+export default Loading;

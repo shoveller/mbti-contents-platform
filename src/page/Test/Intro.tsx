@@ -1,10 +1,10 @@
-import { TestData } from "@/data/TESTS";
-import { useNavigate, useRouteLoaderData } from "react-router";
+import { useNavigate } from "react-router";
 import IntroButtonGroup from "./IntroButtonGroup";
 import useTestParams from "./useTestParams";
+import useTestLoaderData from "./useTestLoaderData";
 
 const Intro = () => {
-  const loaderData = useRouteLoaderData<{ test: TestData }>("testLoader");
+  const loaderData = useTestLoaderData();
   const info = loaderData?.test?.info;
   const navigate = useNavigate();
   const { testParam } = useTestParams();
@@ -31,4 +31,5 @@ const Intro = () => {
   );
 };
 
+export const Component = Intro;
 export default Intro;

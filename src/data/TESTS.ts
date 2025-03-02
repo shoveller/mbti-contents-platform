@@ -9,8 +9,10 @@ export type TestInfo = {
   category: string;
 };
 
+export type MBTITypes = 'E' | 'I' | 'S' | 'N' | 'T' | 'F' | 'J' | 'P';
+
 export type Answer = {
-  type: string;
+  type: MBTITypes;
   content: string;
 };
 

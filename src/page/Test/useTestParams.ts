@@ -1,11 +1,20 @@
 import { useParams } from "react-router";
 
-export const modeList = ["intro", "quiz", "loading"] as const;
-
-export type ModeList = (typeof modeList)[number];
-
 const useTestParams = () => {
-    return useParams<{ mode: ModeList, testParam: string }>();
+    const { testParam, step } = useParams<{ testParam: string, step: string }>();
+    const stepNumber = Number(step);
+
+    if (isNaN(stepNumber)) {
+        return {
+            testParam,
+            step: 1
+        }
+    }
+
+    return {
+        testParam,
+        step: stepNumber
+    }
 };
 
 export default useTestParams;
