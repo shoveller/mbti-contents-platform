@@ -6,7 +6,7 @@ const Thumbnail = () => {
     <>
       {TESTS.map((item) => {
         return (
-          <Link key={item.info.mainUrl} to={item.info.mainUrl}>
+          <Link key={item.info.mainUrl} to={item.info.mainUrl} viewTransition>
             <img src={item.info.thumbImage} alt={item.info.mainUrl} />
           </Link>
         );

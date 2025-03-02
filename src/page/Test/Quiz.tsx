@@ -109,6 +109,7 @@ const Quiz = () => {
                   pathname: nextPathname,
                   search: getSearch(item.type),
                 }}
+                viewTransition
               >
                 {item.content}
               </Link>
