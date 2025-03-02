@@ -63,7 +63,5 @@ const Result = () => {
   return <img src={result?.img_src} alt={result?.type} />;
 };
 
-export const Component = () => {
-  return <Result />;
-};
+export const Component = Result;
 export default Result;
