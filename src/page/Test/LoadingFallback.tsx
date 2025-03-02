@@ -1,8 +1,8 @@
 import Lottie from "react-lottie-player";
 import animationData from "./animationData.json";
 
-const HydrateFallback = () => {
+const LoadingFallback = () => {
   return <Lottie loop animationData={animationData} play />;
 };
 
-export default HydrateFallback;
+export default LoadingFallback;

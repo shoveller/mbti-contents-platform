@@ -1,36 +1,69 @@
-import { LoaderFunction, Navigate, redirect } from "react-router";
+import {
+  Await,
+  data,
+  LoaderFunction,
+  Navigate,
+  redirect,
+  useLoaderData,
+} from "react-router";
 import { QuizScore, getMBTIType } from "./quizScore";
-import useTestParams from "./useTestParams";
-import sleep from "./sleep";
 import useTestLoaderData from "./useTestLoaderData";
+import { Suspense } from "react";
+import useTestParams from "@/page/Test/useTestParams.ts";
+import LoadingFallback from "@/page/Test/LoadingFallback.tsx";
 
 export const loader: LoaderFunction<{
   testParam: string;
   mbti?: string;
-}> = async ({ request, params }) => {
+}> = ({ request, params }) => {
   if (params?.mbti) {
     return null;
   }
 
-  await sleep(5000);
   const url = new URL(request.url);
   const scores: QuizScore = JSON.parse(url.searchParams.get("scores") || "");
   const mbti = getMBTIType(scores);
 
-  return redirect(`/${params.testParam}/result/${mbti}`);
+  if (mbti.includes("X")) {
+    return redirect(`/${params.testParam}}`);
+  }
+
+  return data({
+    mbtiData: new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(mbti);
+      }, 5000);
+    }),
+  });
 };
 
 const Result = () => {
-  const { mbti, testParam } = useTestParams();
-  const loaderData = useTestLoaderData();
-  const result = loaderData?.test?.results.find((item) => item.type === mbti);
+  const { testParam, mbti } = useTestParams();
+  const loaderData = useLoaderData<{
+    mbtiData: Promise<string>;
+  }>();
+  const testLoaderData = useTestLoaderData();
 
-  if (!result?.img_src) {
-    return <Navigate to={`/${testParam}`} />;
+  if (!mbti) {
+    return (
+      <Suspense fallback={<LoadingFallback />}>
+        <Await resolve={loaderData?.mbtiData}>
+          {(mbti) => {
+            return <Navigate to={`/${testParam}/result/${mbti}`} />;
+          }}
+        </Await>
+      </Suspense>
+    );
   }
+
+  const result = testLoaderData?.test?.results.find(
+    (item) => item.type === mbti,
+  );
 
   return <img src={result?.img_src} alt={result?.type} />;
 };
 
-export const Component = Result;
+export const Component = () => {
+  return <Result />;
+};
 export default Result;
