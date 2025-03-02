@@ -1,6 +1,7 @@
 import LanguageIcons from "@/page/Main/LanguageIcons.tsx";
 import MainBanner from "@/page/Main/MainBanner.tsx";
 import CategoryButtons from "@/page/Main/CategoryButtons.tsx";
+import Thumbnail from "@/page/Main/Thumbnail.tsx";
 
 const Main = () => {
   return (
@@ -8,6 +9,7 @@ const Main = () => {
       <LanguageIcons />
       <MainBanner />
       <CategoryButtons />
+      <Thumbnail />
     </>
   );
 };

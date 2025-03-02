@@ -1,4 +1,38 @@
-export const TESTS = [
+export type TestInfo = {
+  mainTitle: string;
+  subTitle: string;
+  mainUrl: string;
+  scoreType: string;
+  mainImage: string;
+  thumbImage: string;
+  lang: string;
+  category: string;
+};
+
+export type Answer = {
+  type: string;
+  content: string;
+};
+
+export type Question = {
+  which: string;
+  question: string;
+  answers: Answer[];
+};
+
+export type Result = {
+  type: string;
+  query: string;
+  img_src: string;
+};
+
+export type TestData = {
+  info: TestInfo;
+  questions: Question[];
+  results: Result[];
+};
+
+export const TESTS: TestData[] = [
   // personalColor
   {
     info: {

@@ -4,16 +4,16 @@ import "@/index.css";
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Outlet,
   Route,
   RouterProvider,
 } from "react-router";
+import RootLayout from "@/page/RootLayout.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Outlet />}>
-      <Route index lazy={() => import("@/page/Main.tsx")} />
-      <Route path=":testParam" lazy={() => import("@/page/Test")}>
+    <Route path="/" element={<RootLayout />}>
+      <Route index lazy={() => import("@/page//Main/Main.tsx")} />
+      <Route path=":testParam" lazy={() => import("@/page//Test/Test")}>
         <Route
           path="result/:resultParam"
           lazy={() => import("@/page/Result")}
