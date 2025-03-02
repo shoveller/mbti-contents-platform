@@ -7,32 +7,46 @@ import {
 } from "react-router";
 import useTestParams from "./useTestParams";
 import useTestLoaderData from "./useTestLoaderData";
-import { getInitialQuizScore, QuizScore, updateQuizScore } from "./quizScore";
+import {
+  getInitialQuizScore,
+  getRandomizedArray,
+  QuizScore,
+  updateQuizScore,
+} from "./quizScore";
 import { MBTITypes } from "@/data/TESTS";
 
 export const loader: LoaderFunction<{ step: string }> = ({ params }) => {
   if (!params?.step) {
-    return redirect("1");
+    return redirect("0");
   }
 
   return null;
 };
 
-const total = 11;
-
 const useQuestion = () => {
-  const { step } = useTestParams();
   const loaderData = useTestLoaderData();
-  const questions = loaderData?.test?.questions || [];
 
-  return questions[step];
+  return (step: number) => {
+    const questions = getRandomizedArray(loaderData?.test?.questions || []);
+    const question = questions[step];
+
+    return {
+      ...question,
+      answers: getRandomizedArray(question.answers),
+    };
+  };
 };
 
-const useNextPathName = () => {
-  const { testParam, step } = useTestParams();
-  const nextStep = step + 1;
+const useMaxLength = () => {
+  const loaderData = useTestLoaderData();
 
-  return `/${testParam}/quiz/${nextStep}`;
+  return (loaderData?.test?.questions.length || 0) - 1;
+};
+
+const useNextPathName = (step: number) => {
+  const { testParam } = useTestParams();
+
+  return `/${testParam}/quiz/${step}`;
 };
 
 const usePrevScores = () => {
@@ -63,15 +77,16 @@ const useNextSearch = () => {
 const Quiz = () => {
   const { testParam, step } = useTestParams();
   const nextStep = step + 1;
-  const pathname = useNextPathName();
-  const { question, answers } = useQuestion();
+  const nextPathname = useNextPathName(nextStep);
+  const max = useMaxLength();
+  const getQuestion = useQuestion();
   const getSearch = useNextSearch();
 
-  if (nextStep > total) {
+  if (nextStep > max + 1) {
     return (
       <Navigate
         to={{
-          pathname: `/${testParam}/loading`,
+          pathname: `/${testParam}/result`,
           search: getSearch(),
         }}
         replace
@@ -79,16 +94,19 @@ const Quiz = () => {
     );
   }
 
+  const { question, answers } = getQuestion(step);
+
   return (
     <>
-      <h3>{question}</h3>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800">{question}</h3>
       <ul>
         {answers.map((item) => {
           return (
             <li key={item.content}>
               <Link
+                className="block my-4 mx-auto py-8 bg-gray-200 rounded-lg text-lg"
                 to={{
-                  pathname,
+                  pathname: nextPathname,
                   search: getSearch(item.type),
                 }}
               >
@@ -101,7 +119,7 @@ const Quiz = () => {
       <progress
         className="w-full h-2 [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-value]:bg-red-600"
         value={step}
-        max={total}
+        max={max + 1}
       />
     </>
   );

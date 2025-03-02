@@ -7,7 +7,14 @@ export const loader: LoaderFunction<{ test: TestData }> = async ({
   const test = TESTS.find((item) => item.info.mainUrl === params?.testParam);
 
   if (test) {
-    return data({ test });
+    return data(
+      { test },
+      {
+        headers: {
+          "Cache-Control": "max-age=31536000, immutable", // 1년(사실상 무한대)
+        },
+      },
+    );
   }
 
   return redirect("/");

@@ -11,7 +11,11 @@ import RootLayout from "@/page/RootLayout.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route
+      path="/"
+      element={<RootLayout />}
+      HydrateFallback={() => <>fheldwn</>}
+    >
       <Route index lazy={() => import("@/page/Main/Main.tsx")} />
       <Route
         path=":testParam"
@@ -20,11 +24,7 @@ const router = createBrowserRouter(
       >
         <Route index lazy={() => import("@/page/Test/Intro")} />
         <Route path="quiz/:step?" lazy={() => import("@/page/Test/Quiz")} />
-        <Route path="loading" lazy={() => import("@/page/Test/Loading")} />
-        <Route
-          path="result/:resultParam"
-          lazy={() => import("@/page/Result")}
-        />
+        <Route path="result/:mbti?" lazy={() => import("@/page/Test/Result")} />
       </Route>
     </Route>,
   ),
