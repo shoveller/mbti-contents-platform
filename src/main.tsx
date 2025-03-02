@@ -12,8 +12,12 @@ import RootLayout from "@/page/RootLayout.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index lazy={() => import("@/page//Main/Main.tsx")} />
-      <Route path=":testParam" lazy={() => import("@/page//Test/Test")}>
+      <Route index lazy={() => import("@/page/Main/Main.tsx")} />
+      <Route
+        path=":testParam/:mode"
+        id="testLoader"
+        lazy={() => import("@/page/Test/Test")}
+      >
         <Route
           path="result/:resultParam"
           lazy={() => import("@/page/Result")}
