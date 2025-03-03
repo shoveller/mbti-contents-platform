@@ -12,6 +12,7 @@ import { Suspense } from "react";
 import useTestParams from "@/page/Test/useTestParams.ts";
 import LoadingFallback from "@/page/Test/LoadingFallback.tsx";
 import ShareButtonGroup from "@/page/Test/ShareButtonGroup.tsx";
+import ControlButtonGroup from "@/page/Test/ControlButtonGroup.tsx";
 
 export const loader: LoaderFunction<{
   testParam: string;
@@ -65,7 +66,10 @@ const Result = () => {
     <>
       <h3 className="text-2xl font-bold text-gray-800 mb-4">결과는...</h3>
       <img src={result?.img_src} alt={result?.type} />
-      <ShareButtonGroup />
+      <section className="flex flex-col justify-center gap-8 py-4">
+        <ShareButtonGroup />
+        <ControlButtonGroup />
+      </section>
     </>
   );
 };
