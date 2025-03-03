@@ -27,7 +27,7 @@ const useQuestion = () => {
   const loaderData = useTestLoaderData();
 
   return (step: number) => {
-    const questions = getRandomizedArray(loaderData?.test?.questions || []);
+    const questions = loaderData?.test?.questions || [];
     const question = questions[step];
 
     return {
