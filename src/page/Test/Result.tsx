@@ -11,6 +11,7 @@ import useTestLoaderData from "./useTestLoaderData";
 import { Suspense } from "react";
 import useTestParams from "@/page/Test/useTestParams.ts";
 import LoadingFallback from "@/page/Test/LoadingFallback.tsx";
+import ShareButtonGroup from "@/page/Test/ShareButtonGroup.tsx";
 
 export const loader: LoaderFunction<{
   testParam: string;
@@ -60,7 +61,13 @@ const Result = () => {
     (item) => item.type === mbti,
   );
 
-  return <img src={result?.img_src} alt={result?.type} />;
+  return (
+    <>
+      <h3 className="text-2xl font-bold text-gray-800 mb-4">결과는...</h3>
+      <img src={result?.img_src} alt={result?.type} />
+      <ShareButtonGroup />
+    </>
+  );
 };
 
 export const Component = Result;

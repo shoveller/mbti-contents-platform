@@ -6,3 +6,6 @@
 - 불필요한 로딩화면이 필요한 경우가 있다.
   - 사용자가 다음 화면을 기대하도록 결과 화면은 조금 늦게 보여주자
   - 3.7초 정도의 대기시간이 효과가 좋았다.
+- 추천할만한 라이브러리
+  - [react-lottie-player](https://www.npmjs.com/package/react-lottie-player) 로띠 플레이어
+  - [react-share](https://www.npmjs.com/package/react-share) 각종 SNS 아이콘 모음
