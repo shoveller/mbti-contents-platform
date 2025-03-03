@@ -14,8 +14,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index lazy={() => import("@/page/Main/Main.tsx")} />
       <Route
-        path=":testParam"
-        id="testLoader"
+        path=":lang"
+        id="rootLoader"
         lazy={() => import("@/page/Test/Test")}
       >
         <Route index lazy={() => import("@/page/Test/Intro")} />

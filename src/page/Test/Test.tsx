@@ -4,7 +4,7 @@ import { data, redirect, LoaderFunction, Outlet } from "react-router";
 export const loader: LoaderFunction<{ test: TestData }> = async ({
   params,
 }) => {
-  const test = TESTS.find((item) => item.info.mainUrl === params?.testParam);
+  const test = TESTS.find((item) => item.info.lang === params?.lang);
 
   if (test) {
     return data(

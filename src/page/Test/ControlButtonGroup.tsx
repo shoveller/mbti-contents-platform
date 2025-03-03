@@ -5,7 +5,7 @@ import { AiOutlineHome, AiOutlineLink, AiOutlineRedo } from "react-icons/ai";
 
 const ControlButtonGroup = () => {
   const navigate = useNavigate();
-  const { testParam } = useTestParams();
+  const { lang } = useTestParams();
 
   return (
     <div className="flex flex-col gap-2 justify-center max">
@@ -18,7 +18,7 @@ const ControlButtonGroup = () => {
           링크 복사
         </button>
         <button
-          onClick={() => navigate(`/${testParam}`)}
+          onClick={() => navigate(`/${lang}`)}
           className="flex justify-center items-center gap-2 border-2 border-amber-800 text-amber-800 text-xl rounded-xl p-4 flex-1 cursor-pointer"
         >
           <AiOutlineRedo />

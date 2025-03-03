@@ -7,7 +7,7 @@ const Intro = () => {
   const loaderData = useTestLoaderData();
   const info = loaderData?.test?.info;
   const navigate = useNavigate();
-  const { testParam } = useTestParams();
+  const { lang } = useTestParams();
 
   return (
     <>
@@ -20,7 +20,7 @@ const Intro = () => {
       <img
         src={info?.mainImage}
         alt={info?.mainTitle}
-        onClick={() => navigate(`/${testParam}/quiz`)}
+        onClick={() => navigate(`/${lang}/quiz`)}
         className="cursor-pointer"
       />
       <p>

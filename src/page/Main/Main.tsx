@@ -5,12 +5,12 @@ import Thumbnail from "@/page/Main/Thumbnail.tsx";
 
 const Main = () => {
   return (
-    <>
+    <section className="flex flex-col gap-4 my-8">
       <LanguageIcons />
       <MainBanner />
       <CategoryButtons />
       <Thumbnail />
-    </>
+    </section>
   );
 };
 

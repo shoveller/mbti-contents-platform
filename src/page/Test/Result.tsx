@@ -16,7 +16,7 @@ import ControlButtonGroup from "@/page/Test/ControlButtonGroup.tsx";
 import OtherTestList from "@/page/Test/OtherTestList.tsx";
 
 export const loader: LoaderFunction<{
-  testParam: string;
+  lang: string;
   mbti?: string;
 }> = ({ request, params }) => {
   if (params?.mbti) {
@@ -28,7 +28,7 @@ export const loader: LoaderFunction<{
   const mbti = getMBTIType(scores);
 
   if (mbti.includes("X")) {
-    return redirect(`/${params.testParam}}`);
+    return redirect(`/${params.lang}}`);
   }
 
   return data({
@@ -41,7 +41,7 @@ export const loader: LoaderFunction<{
 };
 
 const Result = () => {
-  const { testParam, mbti } = useTestParams();
+  const { lang, mbti } = useTestParams();
   const loaderData = useLoaderData<{
     mbtiData: Promise<string>;
   }>();
@@ -52,7 +52,7 @@ const Result = () => {
       <Suspense fallback={<LoadingFallback />}>
         <Await resolve={loaderData?.mbtiData}>
           {(mbti) => {
-            return <Navigate to={`/${testParam}/result/${mbti}`} />;
+            return <Navigate to={`/${lang}/result/${mbti}`} />;
           }}
         </Await>
       </Suspense>

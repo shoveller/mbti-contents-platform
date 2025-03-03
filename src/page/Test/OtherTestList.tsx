@@ -3,11 +3,11 @@ import { TESTS } from "@/data/TESTS.ts";
 import { Link } from "react-router";
 
 const OtherTestList = () => {
-  const { testParam } = useTestParams();
+  const { lang } = useTestParams();
 
   return (
     <section>
-      {TESTS.filter((item) => item.info.mainUrl !== testParam).map((item) => {
+      {TESTS.filter((item) => item.info.mainUrl !== lang).map((item) => {
         return (
           <Link
             key={item.info.mainUrl}

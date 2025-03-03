@@ -44,9 +44,9 @@ const useMaxLength = () => {
 };
 
 const useNextPathName = (step: number) => {
-  const { testParam } = useTestParams();
+  const { lang } = useTestParams();
 
-  return `/${testParam}/quiz/${step}`;
+  return `/${lang}/quiz/${step}`;
 };
 
 const usePrevScores = () => {
@@ -75,7 +75,7 @@ const useNextSearch = () => {
 };
 
 const Quiz = () => {
-  const { testParam, step } = useTestParams();
+  const { lang, step } = useTestParams();
   const nextStep = step + 1;
   const nextPathname = useNextPathName(nextStep);
   const max = useMaxLength();
@@ -86,7 +86,7 @@ const Quiz = () => {
     return (
       <Navigate
         to={{
-          pathname: `/${testParam}/result`,
+          pathname: `/${lang}/result`,
           search: getSearch(),
         }}
         replace

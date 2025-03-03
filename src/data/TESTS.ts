@@ -9,7 +9,7 @@ export type TestInfo = {
   category: string;
 };
 
-export type MBTITypes = 'E' | 'I' | 'S' | 'N' | 'T' | 'F' | 'J' | 'P';
+export type MBTITypes = "E" | "I" | "S" | "N" | "T" | "F" | "J" | "P";
 
 export type Answer = {
   type: MBTITypes;
@@ -46,7 +46,7 @@ export const TESTS: TestData[] = [
         "https://www.dropbox.com/scl/fi/u4moi8xe7wme1ao796ujw/personalColor-intro.png?rlkey=qn2igicxafksekjx9fsnukk9z&st=ifpx4r50&dl=1",
       thumbImage:
         "https://www.dropbox.com/scl/fi/9iqe0gypnnclo5elt3hpi/personalColor-thumb.png?rlkey=m9uwdd6xww0v66g2gjo2688jz&st=ut5c22fv&dl=1",
-      lang: "Kor",
+      lang: "ko",
       category: "characteristic",
     },
     questions: [
@@ -333,7 +333,7 @@ export const TESTS: TestData[] = [
         "https://www.dropbox.com/scl/fi/jmihoko6rjpk0d3rgewsr/personalColorEng-intro.png?rlkey=ifyyqa8m4w44vq1nk08fshhnj&st=n42rl4fc&dl=1",
       thumbImage:
         "https://www.dropbox.com/scl/fi/x2b3tms9ml6kbz3vcot9h/personalColorEng-thumb.png?rlkey=alaxfwbswgfn34xao2zm99a84&st=zvw3w510&dl=1",
-      lang: "Eng",
+      lang: "en",
       category: "characteristic",
     },
     questions: [
@@ -620,7 +620,7 @@ export const TESTS: TestData[] = [
         "https://www.dropbox.com/scl/fi/oyaueh1pzggp5s92532ba/personalColorJP-intro.png?rlkey=pc8j3xs4o64hlxoiqegk6nrdb&st=ipxjb532&dl=1",
       thumbImage:
         "https://www.dropbox.com/scl/fi/kt272mdx3kigrtgwojeod/personalColorJP-thumb.png?rlkey=j19yzp6gt6iokqgg8kzrl1gpj&st=gzznyj10&dl=1",
-      lang: "JP",
+      lang: "jp",
       category: "characteristic",
     },
     questions: [
