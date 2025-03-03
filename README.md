@@ -8,4 +8,5 @@
   - 3.7초 정도의 대기시간이 효과가 좋았다.
 - 추천할만한 라이브러리
   - [react-lottie-player](https://www.npmjs.com/package/react-lottie-player) 로띠 플레이어
-  - [react-share](https://www.npmjs.com/package/react-share) 각종 SNS 아이콘 모음
+  - [react-share](https://www.npmjs.com/package/react-share) 각종 SNS 공유버튼 모음. 프로토콜도 구현이 되어 있다.
+  - [react-icons](https://react-icons.github.io/react-icons/icons/ai/) react.js 에서 사용할 수 있는 거의 모든 아이콘 모음. 
