@@ -7,11 +7,11 @@ const OtherTestList = () => {
 
   return (
     <section>
-      {TESTS.filter((item) => item.info.mainUrl !== lang).map((item) => {
+      {TESTS.filter((item) => item.info.lang !== lang).map((item) => {
         return (
           <Link
             key={item.info.mainUrl}
-            to={`/${item.info.mainUrl}`}
+            to={`/${item.info.lang}`}
             viewTransition
           >
             <img src={item.info.thumbImage} alt={item.info.mainUrl} />
