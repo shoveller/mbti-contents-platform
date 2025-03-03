@@ -122,6 +122,11 @@ const Quiz = () => {
         value={step}
         max={max + 1}
       />
+      <h5>
+        <span>
+          {step}/{max + 1}
+        </span>
+      </h5>
     </>
   );
 };

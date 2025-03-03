@@ -13,6 +13,7 @@ import useTestParams from "@/page/Test/useTestParams.ts";
 import LoadingFallback from "@/page/Test/LoadingFallback.tsx";
 import ShareButtonGroup from "@/page/Test/ShareButtonGroup.tsx";
 import ControlButtonGroup from "@/page/Test/ControlButtonGroup.tsx";
+import OtherTestList from "@/page/Test/OtherTestList.tsx";
 
 export const loader: LoaderFunction<{
   testParam: string;
@@ -69,6 +70,7 @@ const Result = () => {
       <section className="flex flex-col justify-center gap-8 py-4">
         <ShareButtonGroup />
         <ControlButtonGroup />
+        <OtherTestList />
       </section>
     </>
   );
