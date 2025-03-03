@@ -32,7 +32,7 @@ export const loader: LoaderFunction<{
     mbtiData: new Promise((resolve) => {
       setTimeout(() => {
         resolve(mbti);
-      }, 5000);
+      }, 3700);
     }),
   });
 };
