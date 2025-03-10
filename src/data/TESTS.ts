@@ -339,173 +339,169 @@ export const TESTS: TestData[] = [
     questions: [
       {
         which: "EI",
-        question: "처음 보는 친구들에게 나는?",
+        question: "How do I act when meeting new people?",
         answers: [
           {
             type: "E",
-            content: "내가 먼저 말을 건낸다.",
+            content: "I initiate conversations first.",
           },
           {
             type: "I",
-            content: "대부분 다른 친구가 먼저 말을 건낸다.",
+            content: "Usually others start talking to me first.",
           },
         ],
       },
       {
         which: "EI",
-        question: "주말에 난?",
+        question: "On weekends, I...",
         answers: [
           {
             type: "E",
-            content: "사람들과 만나는 것을 즐긴다.",
+            content: "Enjoy meeting people.",
           },
           {
             type: "I",
-            content: "혼자 있는 게 싫지 않은 편이다.",
+            content: "Don't mind being alone.",
           },
         ],
       },
       {
         which: "EI",
-        question: "친구들과 놀 때 나는?",
+        question: "When hanging out with friends, I...",
         answers: [
           {
             type: "E",
-            content: "왁자지껄한 신나는 분위기를 좋아한다.",
+            content: "Prefer a lively and exciting atmosphere.",
           },
           {
             type: "I",
-            content: "소수의 친구들과 소소하게 대화하는 것을 좋아한다. ",
+            content: "Prefer having casual conversations with a small group of friends.",
           },
         ],
       },
       {
         which: "SN",
-        question: "내가 더 중요하게 생각하는 것은?",
+        question: "What do I consider more important?",
         answers: [
           {
             type: "S",
-            content: "현재가 없으면 미래도 없다.",
+            content: "Without the present, there is no future.",
           },
           {
             type: "N",
-            content: "미래를 생각하지 않으면 발전이 없다.",
+            content: "Without thinking about the future, there is no progress.",
           },
         ],
       },
       {
         which: "SN",
-        question: "일할 때 나는?",
+        question: "When working, I...",
         answers: [
           {
             type: "S",
-            content: "남들이 하는 대로 따라 가는 것이 좋다.",
+            content: "Prefer following established methods.",
           },
           {
             type: "N",
-            content: "스스로 나만의 방법을 만드는 게 좋다. ",
+            content: "Like creating my own methods.",
           },
         ],
       },
       {
         which: "SN",
-        question: "주변 사람들이 나에게 하는 말은?",
+        question: "People around me often say that I am...",
         answers: [
           {
             type: "S",
-            content: "꾸준하고 참을성이 있다는 말을 자주한다.",
+            content: "Consistent and patient.",
           },
           {
             type: "N",
-            content: "창의적이고 독창적이라는 말을 자주한다.",
+            content: "Creative and original.",
           },
         ],
       },
       {
         which: "TF",
-        question: "거절해야 하는 상황이 오면 나는?",
+        question: "When I need to reject something, I...",
         answers: [
           {
             type: "T",
-            content: "강력하게 할 수 없다고 말한다.",
+            content: "Firmly say that I cannot do it.",
           },
           {
             type: "F",
-            content: "고민하다가 대부분 들어주는 편이다.",
+            content: "Usually end up agreeing after worrying about it.",
           },
         ],
       },
       {
         which: "TF",
-        question: "화났을 때 나는?",
+        question: "When I'm angry, I...",
         answers: [
           {
             type: "T",
-            content: "논리적으로 잘 말하면서 따진다. ",
+            content: "Argue logically and articulate my points well.",
           },
           {
             type: "F",
-            content: "할말이 많지만 너무 분해서 눈물부터 난다.",
+            content: "Have a lot to say but tear up first because I'm so upset.",
           },
         ],
       },
       {
         which: "TF",
-        question:
-          "고민을 얘기하는 친구, 듣다 보니 친구의 잘못인 것 같다. 그럴 때 나는?",
+        question: "If a friend is sharing their problem but I think it's their fault, I...",
         answers: [
           {
             type: "T",
-            content: "친구의 잘못된 점을 말해준다.",
+            content: "Point out where they went wrong.",
           },
           {
             type: "F",
-            content: "직접적으로 말하면 친구가 그래 할까봐 돌려 말한다.",
+            content: "Try to be indirect because I'm afraid they'll feel bad if I'm too direct.",
           },
         ],
       },
       {
         which: "JP",
-        question: "준비물을 준비할 때 나는?",
+        question: "When preparing supplies, I...",
         answers: [
           {
             type: "J",
-            content: "하루 전 날 미리 준비한다.",
+            content: "Prepare everything the day before.",
           },
           {
             type: "P",
-            content: "‘내일 챙겨야지’ 하다가 까먹고 놓고 오는 일이 많다.",
+            content: "Often think 'I'll pack tomorrow' but end up forgetting things.",
           },
         ],
       },
       {
         which: "JP",
-        question:
-          "끝나고 집에 가서 공부하려 했는데, 친구들이 놀자고 붙잡는다. 나는?",
+        question: "I planned to study at home, but friends want me to hang out. I...",
         answers: [
           {
             type: "J",
-            content: "계획에 없던 일인데…매우 당황스럽다.",
+            content: "Feel very uncomfortable because this wasn't in my plans.",
           },
           {
             type: "P",
-            content: "오케이! 역시 계획대로 안 되는 것이 인생! 놀자!!!!",
+            content: "Okay! Life never goes as planned anyway! Let's have fun!",
           },
         ],
       },
       {
         which: "JP",
-        question: "내가 가고싶은 여행지 스타일은?",
+        question: "My preferred travel style is...",
         answers: [
           {
             type: "J",
-            content:
-              "내가 계획한대로! 계획적으로 일의 순서대로 진행하는 것을 좋아해!",
+            content: "Following my plan! I like proceeding in order according to a schedule.",
           },
           {
             type: "P",
-            content:
-              "그때그때 생각나는 대로 일 처리! 융통성 있게 하는 것을 좋아해!",
+            content: "Going with the flow! I prefer being flexible and adaptable.",
           },
         ],
       },
@@ -626,173 +622,169 @@ export const TESTS: TestData[] = [
     questions: [
       {
         which: "EI",
-        question: "처음 보는 친구들에게 나는?",
+        question: "初めて会う友達に対して私は？",
         answers: [
           {
             type: "E",
-            content: "내가 먼저 말을 건낸다.",
+            content: "自分から話しかける。",
           },
           {
             type: "I",
-            content: "대부분 다른 친구가 먼저 말을 건낸다.",
+            content: "ほとんどの場合、相手から話しかけられる。",
           },
         ],
       },
       {
         which: "EI",
-        question: "주말에 난?",
+        question: "週末の私は？",
         answers: [
           {
             type: "E",
-            content: "사람들과 만나는 것을 즐긴다.",
+            content: "人と会うのを楽しむ。",
           },
           {
             type: "I",
-            content: "혼자 있는 게 싫지 않은 편이다.",
+            content: "一人でいるのも悪くない。",
           },
         ],
       },
       {
         which: "EI",
-        question: "친구들과 놀 때 나는?",
+        question: "友達と遊ぶとき、私は？",
         answers: [
           {
             type: "E",
-            content: "왁자지껄한 신나는 분위기를 좋아한다.",
+            content: "にぎやかで楽しい雰囲気が好き。",
           },
           {
             type: "I",
-            content: "소수의 친구들과 소소하게 대화하는 것을 좋아한다. ",
+            content: "少人数の友達とささやかに会話するのが好き。",
           },
         ],
       },
       {
         which: "SN",
-        question: "내가 더 중요하게 생각하는 것은?",
+        question: "私がより重要だと考えるのは？",
         answers: [
           {
             type: "S",
-            content: "현재가 없으면 미래도 없다.",
+            content: "現在がなければ未来もない。",
           },
           {
             type: "N",
-            content: "미래를 생각하지 않으면 발전이 없다.",
+            content: "未来を考えなければ発展はない。",
           },
         ],
       },
       {
         which: "SN",
-        question: "일할 때 나는?",
+        question: "仕事をするとき、私は？",
         answers: [
           {
             type: "S",
-            content: "남들이 하는 대로 따라 가는 것이 좋다.",
+            content: "他の人がするようにやるのが良い。",
           },
           {
             type: "N",
-            content: "스스로 나만의 방법을 만드는 게 좋다. ",
+            content: "自分なりのやり方を作るのが良い。",
           },
         ],
       },
       {
         which: "SN",
-        question: "주변 사람들이 나에게 하는 말은?",
+        question: "周りの人が私によく言うのは？",
         answers: [
           {
             type: "S",
-            content: "꾸준하고 참을성이 있다는 말을 자주한다.",
+            content: "粘り強くて忍耐力があるとよく言われる。",
           },
           {
             type: "N",
-            content: "창의적이고 독창적이라는 말을 자주한다.",
+            content: "創造的でオリジナリティがあるとよく言われる。",
           },
         ],
       },
       {
         which: "TF",
-        question: "거절해야 하는 상황이 오면 나는?",
+        question: "断らなければならない状況になったとき、私は？",
         answers: [
           {
             type: "T",
-            content: "강력하게 할 수 없다고 말한다.",
+            content: "はっきりとできないと伝える。",
           },
           {
             type: "F",
-            content: "고민하다가 대부분 들어주는 편이다.",
+            content: "悩んだ末、たいていは受け入れてしまう。",
           },
         ],
       },
       {
         which: "TF",
-        question: "화났을 때 나는?",
+        question: "怒ったとき、私は？",
         answers: [
           {
             type: "T",
-            content: "논리적으로 잘 말하면서 따진다. ",
+            content: "論理的に話して相手を問い詰める。",
           },
           {
             type: "F",
-            content: "할말이 많지만 너무 분해서 눈물부터 난다.",
+            content: "言いたいことはたくさんあるけど、悔しくて涙が先に出てくる。",
           },
         ],
       },
       {
         which: "TF",
-        question:
-          "고민을 얘기하는 친구, 듣다 보니 친구의 잘못인 것 같다. 그럴 때 나는?",
+        question: "悩みを話す友達の話を聞いていたら、友達に非があるように思える。そんなとき私は？",
         answers: [
           {
             type: "T",
-            content: "친구의 잘못된 점을 말해준다.",
+            content: "友達の間違っている点を指摘する。",
           },
           {
             type: "F",
-            content: "직접적으로 말하면 친구가 그래 할까봐 돌려 말한다.",
+            content: "直接言うと友達が傷つくかもしれないので、遠回しに伝える。",
           },
         ],
       },
       {
         which: "JP",
-        question: "준비물을 준비할 때 나는?",
+        question: "準備物を用意するとき、私は？",
         answers: [
           {
             type: "J",
-            content: "하루 전 날 미리 준비한다.",
+            content: "前日に準備しておく。",
           },
           {
             type: "P",
-            content: "‘내일 챙겨야지’ 하다가 까먹고 놓고 오는 일이 많다.",
+            content: "「明日用意しよう」と思いながら、忘れて持っていかないことが多い。",
           },
         ],
       },
       {
         which: "JP",
-        question:
-          "끝나고 집에 가서 공부하려 했는데, 친구들이 놀자고 붙잡는다. 나는?",
+        question: "終わった後に家で勉強しようと思っていたのに、友達が遊ぼうと誘ってきた。私は？",
         answers: [
           {
             type: "J",
-            content: "계획에 없던 일인데…매우 당황스럽다.",
+            content: "予定にないことで...とても戸惑う。",
           },
           {
             type: "P",
-            content: "오케이! 역시 계획대로 안 되는 것이 인생! 놀자!!!!",
+            content: "オッケー！やっぱり計画通りにいかないのが人生！遊ぼう！！！！",
           },
         ],
       },
       {
         which: "JP",
-        question: "내가 가고싶은 여행지 스타일은?",
+        question: "私が行きたい旅行先のスタイルは？",
         answers: [
           {
             type: "J",
-            content:
-              "내가 계획한대로! 계획적으로 일의 순서대로 진행하는 것을 좋아해!",
+            content: "自分の計画通りに！計画的に順序よく進めるのが好き！",
           },
           {
             type: "P",
-            content:
-              "그때그때 생각나는 대로 일 처리! 융통성 있게 하는 것을 좋아해!",
+            content: "その場その場で思いついたように対応！臨機応変にするのが好き！",
           },
         ],
       },
