@@ -24,9 +24,9 @@ const Intro = () => {
         className="cursor-pointer"
       />
       <p>
-        <span className="text-red-800">{info?.mainTitle}</span>를 시작해 보세요!
+        <span className="text-red-800">{info?.mainTitle}</span>
       </p>
-      <IntroButtonGroup />
+      {/* <IntroButtonGroup /> */}
     </>
   );
 };

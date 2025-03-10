@@ -38,7 +38,7 @@ export const TESTS: TestData[] = [
   // personalColor
   {
     info: {
-      mainTitle: "퍼스널 컬러 테스트",
+      mainTitle: "퍼스널 컬러 테스트를 시작해 보세요!",
       subTitle: "나에게 어울리는 컬러는 무엇일까?",
       mainUrl: "personalColor",
       scoreType: "MBTI",
@@ -325,7 +325,7 @@ export const TESTS: TestData[] = [
   // personalColorEng
   {
     info: {
-      mainTitle: "Personal Color Test",
+      mainTitle: "Start Your Personal Color Test!",
       subTitle: "What is the color that suits me?",
       mainUrl: "personalColorEng",
       scoreType: "MBTI",
@@ -608,7 +608,7 @@ export const TESTS: TestData[] = [
   // personalColorJP
   {
     info: {
-      mainTitle: "パーソナルカラー診断_性格編",
+      mainTitle: "パーソナルカラー診断_性格編を始めてみましょう！",
       subTitle: "自分に似合う色は何だろう？ パーソナルカラーテスト",
       mainUrl: "personalColorJP",
       scoreType: "MBTI",
