@@ -12,7 +12,9 @@ const ShareButtonGroup = () => {
 
   return (
     <section>
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">친구와 공유하기</h3>
+      <h3 className="text-2xl font-bold text-gray-800 mb-4">
+        {testLoaderData?.test.resultInfo.shareTitle}
+      </h3>
       <div className="flex justify-center gap-4">
         <FacebookShareButton
           url={window.location.href}

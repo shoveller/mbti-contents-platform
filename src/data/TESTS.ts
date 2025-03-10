@@ -32,11 +32,27 @@ export type TestData = {
   info: TestInfo;
   questions: Question[];
   results: Result[];
+  resultInfo: ResultInfo;
 };
+
+export type ResultInfo = {
+  mainTitle: string;
+  shareTitle: string;
+  copyTitle: string;
+  retryTitle: string;
+  gotoHomeTitle: string;
+}
 
 export const TESTS: TestData[] = [
   // personalColor
   {
+    resultInfo: {
+      mainTitle: "결과는...",
+      shareTitle: "친구와 공유하기",
+      copyTitle: "링크 복사",
+      retryTitle: "다시 하기",
+      gotoHomeTitle: "다른 테스트 하러 가기",
+    },
     info: {
       mainTitle: "퍼스널 컬러 테스트를 시작해 보세요!",
       subTitle: "나에게 어울리는 컬러는 무엇일까?",
@@ -324,6 +340,13 @@ export const TESTS: TestData[] = [
   },
   // personalColorEng
   {
+    resultInfo: {
+      mainTitle: "Your Result is...",
+      shareTitle: "Share with Friends",
+      copyTitle: "Copy Link",
+      retryTitle: "Try Again",
+      gotoHomeTitle: "Try Other Tests",
+    },
     info: {
       mainTitle: "Start Your Personal Color Test!",
       subTitle: "What is the color that suits me?",
@@ -607,6 +630,13 @@ export const TESTS: TestData[] = [
   },
   // personalColorJP
   {
+    resultInfo: {
+      mainTitle: "結果は...",
+      shareTitle: "友達とシェアする",
+      copyTitle: "リンクをコピー",
+      retryTitle: "もう一度やる",
+      gotoHomeTitle: "他のテストをする",
+    },
     info: {
       mainTitle: "パーソナルカラー診断_性格編を始めてみましょう！",
       subTitle: "自分に似合う色は何だろう？ パーソナルカラーテスト",

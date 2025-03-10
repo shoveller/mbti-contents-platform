@@ -65,12 +65,14 @@ const Result = () => {
 
   return (
     <>
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">결과는...</h3>
+      <h3 className="text-2xl font-bold text-gray-800 mb-4">
+        {testLoaderData?.test.resultInfo.mainTitle}
+      </h3>
       <img src={result?.img_src} alt={result?.type} />
       <section className="flex flex-col justify-center gap-8 py-4">
         <ShareButtonGroup />
         <ControlButtonGroup />
-        <OtherTestList />
+        {/* <OtherTestList /> */}
       </section>
     </>
   );

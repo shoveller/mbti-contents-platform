@@ -104,7 +104,7 @@ const Quiz = () => {
           return (
             <li key={item.content}>
               <Link
-                className="block my-4 mx-auto py-8 bg-gray-200 rounded-lg text-lg"
+                className="block my-4 mx-auto py-8 bg-gray-200 rounded-lg text-lg select-none"
                 to={{
                   pathname: nextPathname,
                   search: getSearch(item.type),
