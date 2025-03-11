@@ -1,99 +1,36 @@
-import {
-  Link,
-  LoaderFunction,
-  Navigate,
-  redirect,
-  useSearchParams,
-} from "react-router";
+import { Link, LoaderFunction, redirect, replace } from "react-router";
 import useTestParams from "./useTestParams";
-import useTestLoaderData from "./useTestLoaderData";
 import {
-  getInitialQuizScore,
-  getRandomizedArray,
-  QuizScore,
-  updateQuizScore,
-} from "./quizScore";
-import { MBTITypes } from "@/data/TESTS";
+  useMaxLength,
+  useNextPathName,
+  useNextSearch,
+  useQuestion,
+} from "@/page/Test/quizHooks.ts";
 
-export const loader: LoaderFunction<{ step: string }> = ({ params }) => {
+export const loader: LoaderFunction<{ lang: string; step: string }> = ({
+  params,
+  request,
+}) => {
   if (!params?.step) {
     return redirect("0");
+  }
+
+  if (Number(params?.step) > 11) {
+    const { search } = new URL(request.url);
+
+    return replace(`/${params.lang}/result${search}`);
   }
 
   return null;
 };
 
-const useQuestion = () => {
-  const loaderData = useTestLoaderData();
-
-  return (step: number) => {
-    const questions = loaderData?.test?.questions || [];
-    const question = questions[step];
-
-    return {
-      ...question,
-      answers: getRandomizedArray(question.answers),
-    };
-  };
-};
-
-const useMaxLength = () => {
-  const loaderData = useTestLoaderData();
-
-  return (loaderData?.test?.questions.length || 0) - 1;
-};
-
-const useNextPathName = (step: number) => {
-  const { lang } = useTestParams();
-
-  return `/${lang}/quiz/${step}`;
-};
-
-const usePrevScores = () => {
-  const [params] = useSearchParams();
-  const scores: QuizScore = JSON.parse(
-    params.get("scores") || JSON.stringify(getInitialQuizScore()),
-  );
-
-  return scores;
-};
-
-const useNextSearch = () => {
-  const prevScores = usePrevScores();
-
-  return (type?: MBTITypes) => {
-    if (type) {
-      return new URLSearchParams({
-        scores: JSON.stringify(updateQuizScore(prevScores, type)),
-      }).toString();
-    }
-
-    return new URLSearchParams({
-      scores: JSON.stringify(prevScores),
-    }).toString();
-  };
-};
-
 const Quiz = () => {
-  const { lang, step } = useTestParams();
+  const { step } = useTestParams();
   const nextStep = step + 1;
   const nextPathname = useNextPathName(nextStep);
   const max = useMaxLength();
   const getQuestion = useQuestion();
   const getSearch = useNextSearch();
-
-  if (nextStep > max + 1) {
-    return (
-      <Navigate
-        to={{
-          pathname: `/${lang}/result`,
-          search: getSearch(),
-        }}
-        replace
-      />
-    );
-  }
-
   const { question, answers } = getQuestion(step);
 
   return (
@@ -109,6 +46,7 @@ const Quiz = () => {
                   pathname: nextPathname,
                   search: getSearch(item.type),
                 }}
+                replace
                 viewTransition
               >
                 {item.content}

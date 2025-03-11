@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router";
-import IntroButtonGroup from "./IntroButtonGroup";
 import useTestParams from "./useTestParams";
-import useTestLoaderData from "./useTestLoaderData";
+import useRootLoaderData from "./useRootLoaderData";
 
 const Intro = () => {
-  const loaderData = useTestLoaderData();
+  const loaderData = useRootLoaderData();
   const info = loaderData?.test?.info;
   const navigate = useNavigate();
   const { lang } = useTestParams();

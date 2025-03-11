@@ -2,32 +2,28 @@ import {
   Await,
   data,
   LoaderFunction,
-  Navigate,
-  redirect,
+  replace,
   useLoaderData,
 } from "react-router";
 import { QuizScore, getMBTIType } from "./quizScore";
-import useTestLoaderData from "./useTestLoaderData";
+import useRootLoaderData from "./useRootLoaderData";
 import { Suspense } from "react";
-import useTestParams from "@/page/Test/useTestParams.ts";
 import LoadingFallback from "@/page/Test/LoadingFallback.tsx";
 import ShareButtonGroup from "@/page/Test/ShareButtonGroup.tsx";
 import ControlButtonGroup from "@/page/Test/ControlButtonGroup.tsx";
 
 export const loader: LoaderFunction<{
   lang: string;
-  mbti?: string;
 }> = ({ request, params }) => {
-  if (params?.mbti) {
-    return null;
+  const { searchParams } = new URL(request.url);
+  const scores: QuizScore = JSON.parse(searchParams.get("scores") || "");
+  if (!scores) {
+    return replace(`/${params.lang}}`);
   }
 
-  const url = new URL(request.url);
-  const scores: QuizScore = JSON.parse(url.searchParams.get("scores") || "");
   const mbti = getMBTIType(scores);
-
   if (mbti.includes("X")) {
-    return redirect(`/${params.lang}}`);
+    return replace(`/${params.lang}}`);
   }
 
   return data({
@@ -40,39 +36,34 @@ export const loader: LoaderFunction<{
 };
 
 const Result = () => {
-  const { lang, mbti } = useTestParams();
   const loaderData = useLoaderData<{
     mbtiData: Promise<string>;
   }>();
-  const testLoaderData = useTestLoaderData();
-
-  if (!mbti) {
-    return (
-      <Suspense fallback={<LoadingFallback />}>
-        <Await resolve={loaderData?.mbtiData}>
-          {(mbti) => {
-            return <Navigate to={`/${lang}/result/${mbti}`} />;
-          }}
-        </Await>
-      </Suspense>
-    );
-  }
-
-  const result = testLoaderData?.test?.results.find(
-    (item) => item.type === mbti,
-  );
+  const rootLoaderData = useRootLoaderData();
 
   return (
-    <>
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">
-        {testLoaderData?.test.resultInfo.mainTitle}
-      </h3>
-      <img src={result?.img_src} alt={result?.type} />
-      <section className="flex flex-col justify-center gap-8 py-4">
-        <ShareButtonGroup />
-        <ControlButtonGroup />
-      </section>
-    </>
+    <Suspense fallback={<LoadingFallback />}>
+      <Await resolve={loaderData?.mbtiData}>
+        {(mbti) => {
+          const result = rootLoaderData?.test?.results.find(
+            (item) => item.type === mbti,
+          );
+
+          return (
+            <>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                {rootLoaderData?.test.resultInfo.mainTitle}
+              </h3>
+              <img src={result?.img_src} alt={result?.type} />
+              <section className="flex flex-col justify-center gap-8 py-4">
+                <ShareButtonGroup />
+                <ControlButtonGroup />
+              </section>
+            </>
+          );
+        }}
+      </Await>
+    </Suspense>
   );
 };
 

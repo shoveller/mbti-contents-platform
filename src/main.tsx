@@ -20,7 +20,7 @@ const router = createBrowserRouter(
       >
         <Route index lazy={() => import("@/page/Test/Intro")} />
         <Route path="quiz/:step?" lazy={() => import("@/page/Test/Quiz")} />
-        <Route path="result/:mbti?" lazy={() => import("@/page/Test/Result")} />
+        <Route path="result" lazy={() => import("@/page/Test/Result")} />
       </Route>
     </Route>,
   ),
