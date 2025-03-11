@@ -16,7 +16,7 @@ export const loader: LoaderFunction<{
   lang: string;
 }> = ({ request, params }) => {
   const { searchParams } = new URL(request.url);
-  const scores: QuizScore = JSON.parse(searchParams.get("scores") || "");
+  const scores: QuizScore = JSON.parse(searchParams.get("scores") || "{}");
   if (!scores) {
     return replace(`/${params.lang}}`);
   }
