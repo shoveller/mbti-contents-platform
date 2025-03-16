@@ -11,12 +11,13 @@ import { Suspense } from "react";
 import LoadingFallback from "@/page/Test/LoadingFallback.tsx";
 import ShareButtonGroup from "@/page/Test/ShareButtonGroup.tsx";
 import ControlButtonGroup from "@/page/Test/ControlButtonGroup.tsx";
+import { deserializeQuizScores } from "./quizHooks";
 
 export const loader: LoaderFunction<{
   lang: string;
 }> = ({ request, params }) => {
   const { searchParams } = new URL(request.url);
-  const scores: QuizScore = JSON.parse(searchParams.get("scores") || "{}");
+  const scores: QuizScore = deserializeQuizScores(searchParams.get("scores") || '') ;
   if (!scores) {
     return replace(`/${params.lang}}`);
   }
