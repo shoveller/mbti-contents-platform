@@ -1,0 +1,12 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.prettierPath": "./node_modules/prettier",
+  "prettier.configPath": "prettier.config.mjs",
+  "eslint.useFlatConfig": true,
+  "eslint.workingDirectories": ["."],
+  "eslint.format.enable": true,
+  "eslint.options": {
+    "overrideConfigFile": "eslint.config.mjs"
+  },
+  "source.organizeImports": "explicit"
+}
