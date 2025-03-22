@@ -1,28 +1,28 @@
 /** @type {import('prettier').Config} */
 export default {
-  endOfLine: "lf",
+  endOfLine: 'lf',
   semi: false,
   singleQuote: true,
   tabWidth: 2,
-  trailingComma: "none",
+  trailingComma: 'none',
   // import sort[s]
   plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-css-order",
-    "prettier-plugin-classnames",
+    '@ianvs/prettier-plugin-sort-imports',
+    'prettier-plugin-css-order',
+    'prettier-plugin-classnames'
   ],
-  endingPosition: "absolute-with-indent",
+  endingPosition: 'absolute-with-indent',
   importOrder: [
-    "^react",
-    "^@remix",
-    "",
-    "<BUILTIN_MODULES>",
-    "<THIRD_PARTY_MODULES>",
-    "",
-    ".css$",
-    ".scss$",
-    "^[.]",
+    '^react',
+    '^@remix',
+    '',
+    '<BUILTIN_MODULES>',
+    '<THIRD_PARTY_MODULES>',
+    '',
+    '.css$',
+    '.scss$',
+    '^[.]'
   ],
-  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
+  importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy']
   // import sort[e]
-};
+}
