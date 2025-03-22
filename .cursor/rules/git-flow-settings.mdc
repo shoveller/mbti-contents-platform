@@ -5,13 +5,13 @@ alwaysApply: true
 ---
 # 기본 방침
 - 프로젝트는 git 으로 관리한다.
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)를 사용한다.
-- [git flow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) 를 사용한다.
-- [semver](https://semver.org/) 를 사용한다.
+- [Conventional Commits](mdc:https:/www.conventionalcommits.org/en/v1.0.0)를 사용한다.
+- [git flow workflow](mdc:https:/www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) 를 사용한다.
+- [semver](mdc:https:/semver.org) 를 사용한다.
 
 # commit convention
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)를 사용한다.
-- [semver](https://semver.org/) 를 사용한다.
+- [Conventional Commits](mdc:https:/www.conventionalcommits.org/en/v1.0.0)를 사용한다.
+- [semver](mdc:https:/semver.org) 를 사용한다.
 	- 버그를 수정했다면 커밋 메시지 첫머리에 `[bug]:` 를 붙인다.
 		- `package.json` 의 `version` 필드의 값을 0.0.1 더한다.
 	- 기능을 추기했다면 커밋 메시지 첫머리에 `[feat]:` 를 붙인다.
@@ -38,11 +38,11 @@ alwaysApply: true
 git init
 ```
 2. 커밋이 없다면 이니셜 커밋을 한다.
-3. `.git` 에 [git flow avh](https://github.com/petervanderdoes/gitflow-avh)  가 설치되어 있지 않다면 아래의 명령어로 설치한다.
+3. `.git` 에 [git flow avh](mdc:https:/github.com/petervanderdoes/gitflow-avh)  가 설치되어 있지 않다면 아래의 명령어로 설치한다.
 ```sh
 brew install git-flow-avh
 ```
-4. `.git` 에 [git flow avh](https://github.com/petervanderdoes/gitflow-avh)  가 초기화되어 있지않다면 아래의 명령어로 초기화한다.
+4. `.git` 에 [git flow avh](mdc:https:/github.com/petervanderdoes/gitflow-avh)  가 초기화되어 있지않다면 아래의 명령어로 초기화한다.
 ```sh
 git flow init -d
 ```
