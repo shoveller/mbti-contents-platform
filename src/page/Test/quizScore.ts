@@ -46,7 +46,9 @@ const compareScores = (
   typeB: string
 ): string => {
   if (a > b) return typeA
+
   if (a < b) return typeB
+
   return 'X'
 }
 

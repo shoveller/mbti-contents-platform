@@ -20,11 +20,13 @@ export const loader: LoaderFunction<{
   const scores: QuizScore = deserializeQuizScores(
     searchParams.get('scores') || ''
   )
+
   if (!scores) {
     return replace(`/${params.lang}}`)
   }
 
   const mbti = getMBTIType(scores)
+
   if (mbti.includes('X')) {
     return replace(`/${params.lang}}`)
   }

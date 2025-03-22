@@ -103,6 +103,7 @@ export const deserializeQuizScores = (encryptedString: string): QuizScore => {
     return JSON.parse(decrypted) as QuizScore
   } catch (error) {
     console.error('퀴즈 점수 복호화 중 오류 발생:', error)
+
     // 오류 발생 시 기본값 반환
     return getInitialQuizScore()
   }
