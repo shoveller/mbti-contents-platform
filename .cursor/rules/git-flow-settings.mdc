@@ -1,0 +1,48 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 기본 방침
+- 프로젝트는 git 으로 관리한다.
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)를 사용한다.
+- [git flow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) 를 사용한다.
+- [semver](https://semver.org/) 를 사용한다.
+
+# commit convention
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)를 사용한다.
+- [semver](https://semver.org/) 를 사용한다.
+	- 버그를 수정했다면 커밋 메시지 첫머리에 `[bug]:` 를 붙인다.
+		- `package.json` 의 `version` 필드의 값을 0.0.1 더한다.
+	- 기능을 추기했다면 커밋 메시지 첫머리에 `[feat]:` 를 붙인다.
+		- `package.json` 의 `version` 필드의 값을 0.1.0 더한다.
+	- 이전 버전과 호환이 되지 않는 큰 변화가 있다면 커밋 메시지 첫머리에 `[!feat]:` 를 붙인다.
+		- `package.json` 의 `version` 필드의 값을 1.0.0 더한다.
+
+# git flow workflow
+## 개요
+- 프로그램의 생명주기는 개발 > QA > 운영 이라는 사이클을 반복한다.
+- `main` 브랜치는 현재 운영중인 프로그램이다. `개발 > QA > 운영` 사이클에서 영구적으로 사용한다.
+	- 모든 깃 브랜치 전략은 `main` 브랜치를 유지/보수하는것에 촛점을 맞추고 있다.
+	- 나머지 브랜치는 브랜치 전략에 따라 생략하거나 추가한다는 점이 다를 뿐, `main` 브랜치를 올바르게 유지/보수한다는 점에서는 목표가 같다. 
+- `develop` 브랜치는 현재 개발중인 프로그램이다. `개발 > QA > 운영` 사이클에서 영구적으로 사용한다.
+- 개발기간 중에 새로 개발해야 하는 기능은 `feature/*` 에서 만든다. `develop` 브랜치에서 분기해서 `develop` 브랜치로 돌아간다.
+- QA기간은 그동안 개발한 내용을 검증하는 기간이다. 따라서 새로운 기능을 추가할 수 없다. 에러를 수정하는 것만 가능하다.
+- `release/*` 브랜치는 QA중인 프로그램을 담는 브랜치다. QA가 끝나면 `main` 브랜치와 `develop` 브랜치로 돌아간다.
+- `bugfix/*` 브랜치는 QA중인 프로그램의 수정사항을 담는 브랜치다.  `release/*` 브랜치에서 파생되어 `release/*` 브랜치로 돌아간다.
+- `hotfix/*` 브랜치는 운영중인 프로그램의 수정사항을 담는 브랜치다.  `main` 브랜치에서 파생된다. 수정이 끝나면  `main` 브랜치와 `develop` 브랜치로 돌아간다.
+
+## git, git flow 초기화
+1. 프로젝트에 `.git` 디렉토리가 없다면 저장소를 초기화한다.
+```sh
+git init
+```
+2. 커밋이 없다면 이니셜 커밋을 한다.
+3. `.git` 에 [git flow avh](https://github.com/petervanderdoes/gitflow-avh)  가 설치되어 있지 않다면 아래의 명령어로 설치한다.
+```sh
+brew install git-flow-avh
+```
+4. `.git` 에 [git flow avh](https://github.com/petervanderdoes/gitflow-avh)  가 초기화되어 있지않다면 아래의 명령어로 초기화한다.
+```sh
+git flow init -d
+```

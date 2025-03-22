@@ -1,0 +1,99 @@
+---
+description: See when you need to provide ESLINT settings with custom settings for your user.
+globs: 
+alwaysApply: false
+---
+# 1. 이전 설정 백업
+1. 코드베이스에 이미 `.eslintrc`, `.eslintrc.json`, `.eslintrc.yml`, `.eslint.config.js` 가 있다면 백업한다.
+2. 백업을 `eslint.config.mjs` 이라는 이름으로3. conf.
+	1라면 [가이드에 따라 마이그레이션](mdc:https:/eslint.org/docs/latest/use/configure/migration-guide)한다
+
+# 2. 커스텀 룰 작성
+1. 아래의 패키지가 없다면 development 모드로 설치한다.
+	- [eslint](mdc:https:/www.npmjs.com/package/eslint)
+	- [globals](mdc:https:/www.npmjs.com/package/globals)
+	- [eslint-plugin-unused-imports](mdc:https:/www.npmjs.com/package/eslint-plugin-unused-imports)
+	- [typescript-eslint](mdc:https:/www.npmjs.com/package/typescript-eslint)
+2. 아래와 같이 `eslint.config.mjs` 에 `defaultCodeStyle` 라는 flat config 를 변수로 추가한다.
+```js
+import js from '@eslint/js'  
+import globals from 'globals'  
+import tseslint from 'typescript-eslint'  
+import unusedImports from 'eslint-plugin-unused-imports'  
+  
+const defaultCodeStyle = {  
+  files: ['**/*.{ts,tsx}'],  
+  languageOptions: {  
+    ecmaVersion: 'latest',  
+    globals: {  
+      ...globals.browser,  
+      ...globals.node  
+    }  
+  },  
+  plugins: {  
+    'unused-imports': unusedImports  
+  },  
+  rules: {  
+    'max-depth': ['error', 2],  
+    'padding-line-between-statements': [  
+      'error',  
+      { blankLine: 'always', prev: '*', next: 'return' },  
+      { blankLine: 'always', prev: '*', next: 'if' },  
+      { blankLine: 'always', prev: 'function', next: '*' },  
+      { blankLine: 'always', prev: '*', next: 'function' }  
+    ],  
+    'no-restricted-syntax': [  
+      'error',  
+      {  
+        selector: 'TSInterfaceDeclaration',  
+        message: 'Interface 대신 type 을 사용하세요.'  
+      },  
+      {  
+        selector: 'VariableDeclaration[kind="let"]',  
+        message: 'let 대신 const 를 사용하세요.'  
+      },  
+      {  
+        selector: 'VariableDeclaration[kind="var"]',  
+        message: 'var 대신 const 를 사용하세요.'  
+      },  
+      {  
+        selector: 'SwitchStatement',  
+        message: 'switch 대신 if 를 사용하세요.'  
+      },  
+      {  
+        selector: 'ConditionalExpression',  
+        message: '삼항 연산자 대신 if 를 사용하세요.'  
+      },  
+      {  
+        selector: 'IfStatement[alternate]',  
+        message: 'else 대신 early return 을 사용하세요.'  
+      }  
+    ],  
+    'no-unused-vars': 'off',  
+    'unused-imports/no-unused-imports': 'error',  
+    'unused-imports/no-unused-vars': [  
+      'warn',  
+      {  
+        vars: 'all',  
+        varsIgnorePattern: '^_',  
+        args: 'after-used',  
+        argsIgnorePattern: '^_'  
+      }  
+    ]  
+  }  
+}  
+```
+
+3. 원래 `eslint.config.mjs`  에 있던 룰에 `defaultCodeStyle` 를 머지한다.
+	1. 원래 `eslint.config.mjs`  에 있던 룰은 삭제하면 안된다.
+4. 백업을 삭제한다.
+# 2. npm script 추가
+- `package.json` 에 아래의 npm script 를 추가한다.
+	- `--cache-location` 옵션으로 캐시 저장소의 위치를 바꾼다. 
+	- [command-line-interface](mdc:hlatest/use/command-line-interface) 문서를 확인해서 cli 사용에 문제가 없는지 재차 확인한다.
+- `pnpm eslint` 명령어를 실행해서 정상적으로 동작하는지 확인한다.
+```json
+{
+	"eslint": "eslint --fix --ignore-pattern .gitignore --cache --cache-location ./node_modules/.cache/eslint ."
+}
+```
