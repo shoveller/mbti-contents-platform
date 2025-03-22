@@ -3,52 +3,54 @@ import {
   data,
   LoaderFunction,
   replace,
-  useLoaderData,
-} from "react-router";
-import { QuizScore, getMBTIType } from "./quizScore";
-import useRootLoaderData from "./useRootLoaderData";
-import { Suspense } from "react";
-import LoadingFallback from "@/page/Test/LoadingFallback.tsx";
-import ShareButtonGroup from "@/page/Test/ShareButtonGroup.tsx";
-import ControlButtonGroup from "@/page/Test/ControlButtonGroup.tsx";
-import { deserializeQuizScores } from "./quizHooks";
+  useLoaderData
+} from 'react-router'
+import { QuizScore, getMBTIType } from './quizScore'
+import useRootLoaderData from './useRootLoaderData'
+import { Suspense } from 'react'
+import LoadingFallback from '@/page/Test/LoadingFallback.tsx'
+import ShareButtonGroup from '@/page/Test/ShareButtonGroup.tsx'
+import ControlButtonGroup from '@/page/Test/ControlButtonGroup.tsx'
+import { deserializeQuizScores } from './quizHooks'
 
 export const loader: LoaderFunction<{
-  lang: string;
+  lang: string
 }> = ({ request, params }) => {
-  const { searchParams } = new URL(request.url);
-  const scores: QuizScore = deserializeQuizScores(searchParams.get("scores") || '') ;
+  const { searchParams } = new URL(request.url)
+  const scores: QuizScore = deserializeQuizScores(
+    searchParams.get('scores') || ''
+  )
   if (!scores) {
-    return replace(`/${params.lang}}`);
+    return replace(`/${params.lang}}`)
   }
 
-  const mbti = getMBTIType(scores);
-  if (mbti.includes("X")) {
-    return replace(`/${params.lang}}`);
+  const mbti = getMBTIType(scores)
+  if (mbti.includes('X')) {
+    return replace(`/${params.lang}}`)
   }
 
   return data({
     mbtiData: new Promise((resolve) => {
       setTimeout(() => {
-        resolve(mbti);
-      }, 3700);
-    }),
-  });
-};
+        resolve(mbti)
+      }, 3700)
+    })
+  })
+}
 
 const Result = () => {
   const loaderData = useLoaderData<{
-    mbtiData: Promise<string>;
-  }>();
-  const rootLoaderData = useRootLoaderData();
+    mbtiData: Promise<string>
+  }>()
+  const rootLoaderData = useRootLoaderData()
 
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Await resolve={loaderData?.mbtiData}>
         {(mbti) => {
           const result = rootLoaderData?.test?.results.find(
-            (item) => item.type === mbti,
-          );
+            (item) => item.type === mbti
+          )
 
           return (
             <>
@@ -61,12 +63,12 @@ const Result = () => {
                 <ControlButtonGroup />
               </section>
             </>
-          );
+          )
         }}
       </Await>
     </Suspense>
-  );
-};
+  )
+}
 
-export const Component = Result;
-export default Result;
+export const Component = Result
+export default Result

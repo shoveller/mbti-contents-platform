@@ -1,6 +1,6 @@
-import LanguageIcons from "@/page/Main/LanguageIcons.tsx";
-import MainBanner from "@/page/Main/MainBanner.tsx";
-import CategoryButtons from "@/page/Main/CategoryButtons.tsx";
+import LanguageIcons from '@/page/Main/LanguageIcons.tsx'
+import MainBanner from '@/page/Main/MainBanner.tsx'
+import CategoryButtons from '@/page/Main/CategoryButtons.tsx'
 // import Thumbnail from "@/page/Main/Thumbnail.tsx";
 
 const Main = () => {
@@ -11,8 +11,8 @@ const Main = () => {
       <CategoryButtons />
       {/*<Thumbnail />*/}
     </section>
-  );
-};
+  )
+}
 
-export const Component = Main;
-export default Main;
+export const Component = Main
+export default Main

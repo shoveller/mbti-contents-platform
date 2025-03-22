@@ -1,9 +1,9 @@
-import useTestParams from "@/page/Test/useTestParams.ts";
-import { TESTS } from "@/data/TESTS.ts";
-import { Link } from "react-router";
+import useTestParams from '@/page/Test/useTestParams.ts'
+import { TESTS } from '@/data/TESTS.ts'
+import { Link } from 'react-router'
 
 const OtherTestList = () => {
-  const { lang } = useTestParams();
+  const { lang } = useTestParams()
 
   return (
     <section>
@@ -16,10 +16,10 @@ const OtherTestList = () => {
           >
             <img src={item.info.thumbImage} alt={item.info.mainUrl} />
           </Link>
-        );
+        )
       })}
     </section>
-  );
-};
+  )
+}
 
-export default OtherTestList;
+export default OtherTestList

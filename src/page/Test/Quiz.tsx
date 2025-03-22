@@ -1,37 +1,37 @@
-import { Link, LoaderFunction, redirect, replace } from "react-router";
-import useTestParams from "./useTestParams";
+import { Link, LoaderFunction, redirect, replace } from 'react-router'
+import useTestParams from './useTestParams'
 import {
   useMaxLength,
   useNextPathName,
   useNextSearch,
-  useQuestion,
-} from "@/page/Test/quizHooks.ts";
+  useQuestion
+} from '@/page/Test/quizHooks.ts'
 
 export const loader: LoaderFunction<{ lang: string; step: string }> = ({
   params,
-  request,
+  request
 }) => {
   if (!params?.step) {
-    return redirect("0");
+    return redirect('0')
   }
 
   if (Number(params?.step) > 11) {
-    const { search } = new URL(request.url);
+    const { search } = new URL(request.url)
 
-    return replace(`/${params.lang}/result${search}`);
+    return replace(`/${params.lang}/result${search}`)
   }
 
-  return null;
-};
+  return null
+}
 
 const Quiz = () => {
-  const { step } = useTestParams();
-  const nextStep = step + 1;
-  const nextPathname = useNextPathName(nextStep);
-  const max = useMaxLength();
-  const getQuestion = useQuestion();
-  const getSearch = useNextSearch();
-  const { question, answers } = getQuestion(step);
+  const { step } = useTestParams()
+  const nextStep = step + 1
+  const nextPathname = useNextPathName(nextStep)
+  const max = useMaxLength()
+  const getQuestion = useQuestion()
+  const getSearch = useNextSearch()
+  const { question, answers } = getQuestion(step)
 
   return (
     <>
@@ -41,10 +41,11 @@ const Quiz = () => {
           return (
             <li key={item.content}>
               <Link
-                className="block my-4 mx-auto py-8 bg-gray-200 rounded-lg text-lg select-none"
+                className="block my-4 mx-auto py-8 bg-gray-200 rounded-lg
+                  text-lg select-none"
                 to={{
                   pathname: nextPathname,
-                  search: getSearch(item.type),
+                  search: getSearch(item.type)
                 }}
                 replace
                 viewTransition
@@ -52,11 +53,14 @@ const Quiz = () => {
                 {item.content}
               </Link>
             </li>
-          );
+          )
         })}
       </ul>
       <progress
-        className="w-full h-2 [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-value]:bg-red-600"
+        className="w-full h-2 [&::-webkit-progress-bar]:rounded-full
+          [&::-webkit-progress-value]:rounded-full
+          [&::-webkit-progress-bar]:bg-gray-200
+          [&::-webkit-progress-value]:bg-red-600"
         value={step}
         max={max + 1}
       />
@@ -66,8 +70,8 @@ const Quiz = () => {
         </span>
       </h5>
     </>
-  );
-};
+  )
+}
 
-export const Component = Quiz;
-export default Quiz;
+export const Component = Quiz
+export default Quiz

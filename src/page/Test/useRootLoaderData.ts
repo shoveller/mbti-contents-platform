@@ -1,8 +1,8 @@
-import { TestData } from "@/data/TESTS";
-import { useRouteLoaderData } from "react-router";
+import { TestData } from '@/data/TESTS'
+import { useRouteLoaderData } from 'react-router'
 
 const useRootLoaderData = () => {
-  return useRouteLoaderData<{ test: TestData }>("rootLoader");
-};
+  return useRouteLoaderData<{ test: TestData }>('rootLoader')
+}
 
-export default useRootLoaderData;
+export default useRootLoaderData

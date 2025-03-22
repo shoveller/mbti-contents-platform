@@ -1,5 +1,5 @@
-import { TESTS } from "@/data/TESTS.ts";
-import { Link } from "react-router";
+import { TESTS } from '@/data/TESTS.ts'
+import { Link } from 'react-router'
 
 const Thumbnail = () => {
   return (
@@ -9,10 +9,10 @@ const Thumbnail = () => {
           <Link key={item.info.mainUrl} to={item.info.lang} viewTransition>
             <img src={item.info.thumbImage} alt={item.info.mainUrl} />
           </Link>
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}
 
-export default Thumbnail;
+export default Thumbnail

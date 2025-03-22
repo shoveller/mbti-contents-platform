@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router";
-import useTestParams from "./useTestParams";
-import useRootLoaderData from "./useRootLoaderData";
+import { useNavigate } from 'react-router'
+import useTestParams from './useTestParams'
+import useRootLoaderData from './useRootLoaderData'
 
 const Intro = () => {
-  const loaderData = useRootLoaderData();
-  const info = loaderData?.test?.info;
-  const navigate = useNavigate();
-  const { lang } = useTestParams();
+  const loaderData = useRootLoaderData()
+  const info = loaderData?.test?.info
+  const navigate = useNavigate()
+  const { lang } = useTestParams()
 
   return (
     <>
@@ -27,8 +27,8 @@ const Intro = () => {
       </p>
       {/* <IntroButtonGroup /> */}
     </>
-  );
-};
+  )
+}
 
-export const Component = Intro;
-export default Intro;
+export const Component = Intro
+export default Intro

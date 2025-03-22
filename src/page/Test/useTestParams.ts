@@ -1,26 +1,26 @@
-import { useParams } from "react-router";
+import { useParams } from 'react-router'
 
 const useTestParams = () => {
   const { lang, step, mbti } = useParams<{
-    lang: string;
-    step?: string;
-    mbti?: string;
-  }>();
-  const stepNumber = Number(step);
+    lang: string
+    step?: string
+    mbti?: string
+  }>()
+  const stepNumber = Number(step)
 
   if (isNaN(stepNumber)) {
     return {
       lang,
       step: 1,
-      mbti,
-    };
+      mbti
+    }
   }
 
   return {
     lang,
     step: stepNumber,
-    mbti,
-  };
-};
+    mbti
+  }
+}
 
-export default useTestParams;
+export default useTestParams

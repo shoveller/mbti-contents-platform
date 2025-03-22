@@ -1,5 +1,5 @@
 const CategoryButtons = () => {
-  return null;
-};
+  return null
+}
 
-export default CategoryButtons;
+export default CategoryButtons
