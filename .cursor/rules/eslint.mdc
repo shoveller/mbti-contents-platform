@@ -1,19 +1,19 @@
 ---
-description: See when you need to provide ESLINT settings with custom settings for your user.
+description: 
 globs: 
 alwaysApply: false
 ---
 # 1. 이전 설정 백업
-1. 코드베이스에 이미 `.eslintrc`, `.eslintrc.json`, `.eslintrc.yml`, `.eslint.config.js` 가 있다면 백업한다.
-2. 백업을 `eslint.config.mjs` 이라는 이름으로3. conf.
-	1라면 [가이드에 따라 마이그레이션](mdc:https:/eslint.org/docs/latest/use/configure/migration-guide)한다
+1. 코드베이스에 이미 `.eslintrc`, `.eslintrc.json`, `.eslintrc.yml`, `.eslint.config.js` 가 있다면 임의의 이름으로 백업한다.
+2. 백업을 `eslint.config.mjs` 이라는 이름으로 복사한다.nfig.mjs` 가 flat config 인지 확인한다.
+	1. `eslint.config.mjs` 가 nfig고 있다lintse/configure/migration-guide)한다
 
 # 2. 커스텀 룰 작성
 1. 아래의 패키지가 없다면 development 모드로 설치한다.
-	- [eslint](mdc:https:/www.npmjs.com/package/eslint)
-	- [globals](mdc:https:/www.npmjs.com/package/globals)
-	- [eslint-plugin-unused-imports](mdc:https:/www.npmjs.com/package/eslint-plugin-unused-imports)
-	- [typescript-eslint](mdc:https:/www.npmjs.com/package/typescript-eslint)
+	- [eslint](https://www.npmjs.com/package/eslint)
+	- [globals](https://www.npmjs.com/package/globals)
+	- [eslint-plugin-unused-imports](https://www.npmjs.com/package/eslint-plugin-unused-imports)
+	- [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)
 2. 아래와 같이 `eslint.config.mjs` 에 `defaultCodeStyle` 라는 flat config 를 변수로 추가한다.
 ```js
 import js from '@eslint/js'  
@@ -67,6 +67,117 @@ const defaultCodeStyle = {
       {  
         selector: 'IfStatement[alternate]',  
         message: 'else 대신 early return 을 사용하세요.'  
+      },  
+      {  
+        selector: 'ForStatement',  
+        message:  
+          'for 루프 대신 배열 메서드(map, filter, reduce 등)를 사용하세요.'  
+      },  
+      {  
+        selector: 'WhileStatement',  
+    대신 배열 메서드나 재귀를 사용하세요.'  
+      },  
+      {  
+        selector: 'DoWhileStatement',  
+        message: 'do-while 루프 대신 배열 메서드나 재귀를 사용하세요.'  
+      },  
+      {  
+        selector: 'ForInStatement',  
+        message:  
+          'for-in 루프 대신 Object.keys(), Object.values(), Object.entries()를 사용하세요.'  
+      },  
+      {  
+        selector: 'ForOfStatement',  
+        message: 'for-of 루프 대신 배열 메서드를 사용하세요.'  
+      },  
+      {  
+        selector: 'CallExpression[callee.property.name="push"]',  
+        message:  
+          'push() 대신 concat() 또는 스프레드 연산자를 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector: 'CallExpression[callee.property.name="pop"]',  
+        message: 'pop() 대신 slice() 메소드를 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector: 'CallExpression[callee.property.name="shift"]',  
+        message: 'shift() 대신 slice() 메소드를 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector: 'CallExpression[callee.property.name="unshift"]',  
+        message:  
+          'unshift() 대신 concat() 또는 스프레드 연산자를 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector: 'CallExpression[callee.property.name="splice"]',  
+        message:  
+          'splice() 대신 slice() 및 스프레드 연산자를 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector: 'CallExpression[callee.property.name="reverse"]',  
+        message:  
+          'reverse() 대신 [...array].reverse()를 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector: 'CallExpression[callee.property.name="fill"]',  
+        message: 'fill() 대신 map()을 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector: 'CallExpression[callee.property.name="copyWithin"]',  
+        message: 'copyWithin() 대신 map()을 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector:  
+          'CallExpression[callee.object.name="Object"][callee.property.name="assign"]',  
+        message:  
+          'Object.assign() 대신 스프레드 연산자를 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector:  
+          'CallExpression[callee.object.name="Object"][callee.property.name="defineProperty"]',  
+        message:  
+          'Object.defineProperty() 대신 새 객체를 생성하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector:  
+          'CallExpression[callee.object.name="Object"][callee.property.name="defineProperties"]',  
+        message:  
+          'Object.defineProperties() 대신 새 객체를 생성하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector:  
+          'CallExpression[callee.object.name="Object"][callee.property.name="setPrototypeOf"]',  
+        message:  
+          'Object.setPrototypeOf() 대신 Object.create()를 사용하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector: 'UnaryExpression[operator="delete"]',  
+        message:  
+          'delete 연산자 대신 새 객체를 생성하고 원하는 속성만 포함하세요. (부수효과 방지)'  
+      },  
+      {  
+        selector:  
+          'AssignmentExpression[left.type="Identifier"][left.name=/^(params?|args?|arguments|prop|props|parameter|parameters)$/]',  
+        message:  
+          '함수 파라미터는 직접 수정하지 마세요. 새 변수를 만들어 사용하세요.'  
+      },  
+      {  
+        selector:  
+          'AssignmentExpression[left.type="MemberExpression"][left.object.name=/^(params?|args?|arguments|prop|props|parameter|parameters)$/]',  
+        message:  
+          '함수 파라미터의 속성은 직접 수정하지 마세요. 객체를 복사하여 사용하세요.'  
+      },  
+      {  
+        selector:  
+          'FunctionDeclaration > BlockStatement > ExpressionStatement > AssignmentExpression[left.type="Identifier"]',  
+        message:  
+          '함수 내에서 파라미터를 재할당하지 마세요. 새 변수를 만들어 사용하세요.'  
+      },  
+      {  
+        selector:  
+          'ArrowFunctionExpression > BlockStatement > ExpressionStatement > AssignmentExpression[left.type="Identifier"]',  
+        message:  
+          '함수 내에서 파라미터를 재할당하지 마세요. 새 변수를 만들어 사용하세요.'  
       }  
     ],  
     'no-unused-vars': 'off',  
@@ -79,18 +190,27 @@ const defaultCodeStyle = {
         args: 'after-used',  
         argsIgnorePattern: '^_'  
       }  
-    ]  
+    ],  
+    'no-param-reassign': ['error', { props: true }],
+    'no-shadow': 'off', // 기본 ESLint 규칙은 비활성화
+	'@typescript-eslint/no-shadow': ['error', {
+	  builtinGlobals: true,
+	  hoist: 'all',
+	  allow: [] // 예외를 허용하고 싶은 변수 이름들
+	}]  
   }  
-}  
+}
 ```
 
 3. 원래 `eslint.config.mjs`  에 있던 룰에 `defaultCodeStyle` 를 머지한다.
 	1. 원래 `eslint.config.mjs`  에 있던 룰은 삭제하면 안된다.
-4. 백업을 삭제한다.
+	2. `defaultCodeStyle` 은 마지막 요소로 병합한다.
+4. 처음 만들어 두었던 백업을 삭제한다.
+
 # 2. npm script 추가
 - `package.json` 에 아래의 npm script 를 추가한다.
 	- `--cache-location` 옵션으로 캐시 저장소의 위치를 바꾼다. 
-	- [command-line-interface](mdc:hlatest/use/command-line-interface) 문서를 확인해서 cli 사용에 문제가 없는지 재차 확인한다.
+	- [command-line-interface](https://eslint.org/docs/latest/use/command-line-interface) 문서를 확인해서 cli 사용에 문제가 없는지 재차 확인한다.
 - `pnpm eslint` 명령어를 실행해서 정상적으로 동작하는지 확인한다.
 ```json
 {

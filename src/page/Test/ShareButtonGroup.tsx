@@ -7,6 +7,11 @@ import {
 import useRootLoaderData from '@/page/Test/useRootLoaderData.ts'
 import copyURL from '@/page/Test/copyURL.ts'
 
+/**
+ * 결과 공유 버튼 그룹 컴포넌트
+ * 페이스북, 트위터 공유 및 URL 복사 버튼을 제공합니다.
+ * @returns {JSX.Element} 공유 버튼 그룹 UI 컴포넌트
+ */
 const ShareButtonGroup = () => {
   const rootLoaderData = useRootLoaderData()
 

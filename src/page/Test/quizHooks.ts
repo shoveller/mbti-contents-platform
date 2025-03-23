@@ -10,9 +10,16 @@ import { useSearchParams } from 'react-router'
 import { MBTITypes } from '@/data/TESTS.ts'
 import CryptoJS from 'crypto-js'
 
-// 암호화 키 (실제 프로덕션에서는 환경 변수로 관리하는 것이 좋습니다)
+/**
+ * 암호화 키 (실제 프로덕션에서는 환경 변수로 관리하는 것이 좋습니다)
+ * @type {string}
+ */
 const ENCRYPTION_KEY = 'mbti-quiz-secret-key'
 
+/**
+ * 현재 스텝에 해당하는 질문과 무작위로 섞인 답변을 반환하는 훅
+ * @returns {Function} 스텝 번호를 입력받아 해당 질문 객체를 반환하는 함수
+ */
 export const useQuestion = () => {
   const loaderData = useRootLoaderData()
 
@@ -27,18 +34,31 @@ export const useQuestion = () => {
   }
 }
 
+/**
+ * 질문의 최대 개수(인덱스)를 반환하는 훅
+ * @returns {number} 질문의 최대 인덱스 (질문 개수 - 1)
+ */
 export const useMaxLength = () => {
   const loaderData = useRootLoaderData()
 
   return (loaderData?.test?.questions.length || 0) - 1
 }
 
+/**
+ * 다음 스텝의 경로를 생성하는 훅
+ * @param {number} step - 현재 스텝 번호
+ * @returns {string} 다음 스텝의 경로
+ */
 export const useNextPathName = (step: number) => {
   const { lang } = useTestParams()
 
   return `/${lang}/quiz/${step}`
 }
 
+/**
+ * URL 파라미터에서 이전 점수를 가져오는 훅
+ * @returns {QuizScore} 이전 점수 객체
+ */
 const usePrevScores = () => {
   const [params] = useSearchParams()
 
@@ -47,6 +67,10 @@ const usePrevScores = () => {
   )
 }
 
+/**
+ * 다음 점수를 URL 검색 파라미터로 생성하는 훅
+ * @returns {Function} MBTI 타입을 받아 새로운 URL 파라미터 문자열을 반환하는 함수
+ */
 export const useNextSearch = () => {
   const prevScores = usePrevScores()
 
@@ -65,8 +89,8 @@ export const useNextSearch = () => {
 
 /**
  * 데이터를 암호화하여 직렬화합니다.
- * @param scores MBTI 퀴즈 점수 객체
- * @returns 암호화된 문자열
+ * @param {QuizScore} scores - MBTI 퀴즈 점수 객체
+ * @returns {string} 암호화된 문자열
  */
 export const serializeQuizScores = (scores: QuizScore): string => {
   // 데이터를 JSON 문자열로 변환
@@ -81,8 +105,8 @@ export const serializeQuizScores = (scores: QuizScore): string => {
 
 /**
  * 암호화된 문자열을 복호화하여 객체로 변환합니다.
- * @param encryptedString 암호화된 문자열
- * @returns MBTI 퀴즈 점수 객체
+ * @param {string} encryptedString - 암호화된 문자열
+ * @returns {QuizScore} MBTI 퀴즈 점수 객체
  */
 export const deserializeQuizScores = (encryptedString: string): QuizScore => {
   try {

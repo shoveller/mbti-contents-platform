@@ -13,6 +13,15 @@ import ShareButtonGroup from '@/page/Test/ShareButtonGroup.tsx'
 import ControlButtonGroup from '@/page/Test/ControlButtonGroup.tsx'
 import { deserializeQuizScores } from './quizHooks'
 
+/**
+ * Result 라우트의 로더 함수
+ * URL 파라미터에서 점수를 가져와 MBTI 유형을 결정합니다.
+ * 유효하지 않은 점수나 결과가 있는 경우 언어 페이지로 리다이렉트합니다.
+ * @param {Object} options - 로더 함수 옵션
+ * @param {Request} options.request - 요청 객체
+ * @param {Object} options.params - URL 파라미터
+ * @returns {Response} 데이터 응답 또는 리다이렉트 응답
+ */
 export const loader: LoaderFunction<{
   lang: string
 }> = ({ request, params }) => {
@@ -40,6 +49,11 @@ export const loader: LoaderFunction<{
   })
 }
 
+/**
+ * 결과 페이지 컴포넌트
+ * MBTI 테스트 결과를 표시합니다.
+ * @returns {JSX.Element} 결과 UI 컴포넌트
+ */
 const Result = () => {
   const loaderData = useLoaderData<{
     mbtiData: Promise<string>

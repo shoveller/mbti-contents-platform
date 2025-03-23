@@ -7,6 +7,14 @@ import {
   useQuestion
 } from '@/page/Test/quizHooks.ts'
 
+/**
+ * Quiz 라우트의 로더 함수
+ * 유효한 스텝을 검증하고 필요한 경우 리다이렉트합니다.
+ * @param {Object} options - 로더 함수 옵션
+ * @param {Object} options.params - URL 파라미터
+ * @param {Request} options.request - 요청 객체
+ * @returns {Response|null} 리다이렉트 응답 또는 null
+ */
 export const loader: LoaderFunction<{ lang: string; step: string }> = ({
   params,
   request
@@ -24,6 +32,11 @@ export const loader: LoaderFunction<{ lang: string; step: string }> = ({
   return null
 }
 
+/**
+ * 퀴즈 컴포넌트
+ * 현재 스텝의 질문과 답변 옵션을 표시합니다.
+ * @returns {JSX.Element} 퀴즈 UI 컴포넌트
+ */
 const Quiz = () => {
   const { step } = useTestParams()
   const nextStep = step + 1

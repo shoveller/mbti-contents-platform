@@ -5,9 +5,26 @@ alwaysApply: true
 ---
 # 기본 방침
 - 프로젝트는 git 으로 관리한다.
-- [Conventional Commits](mdc:https:/www.conventionalcommits.org/en/v1.0.0)를 사용한다.
-- [git flow workflow](mdc:https:/www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) 를 사용한다.
+- ](https://mmits.org/e0/)를 사용한다.
+- [git flow workflow]n.com/git/ls/comparing-workflows/gitflow-workflow) 를 사용한다.
 - [semver](mdc:https:/semver.org) 를 사용한다.
+
+# .gitignore
+- 프로젝트에 `.gitignore` 가 없다면 아래의 명령어로 생성한다.
+```sh
+pnpm dlx mrm@latest gitignore
+```
+
+- `.gitignore` 에 아래의 내용이 없다면 추가한다.
+```txt
+.idea
+.cursor
+```
+
+- `.gitignore` 에 아래의 내용이 있다면 삭제한다.
+```txt
+.vscode
+```
 
 # commit convention
 - [Conventional Commits](mdc:https:/www.conventionalcommits.org/en/v1.0.0)를 사용한다.
@@ -27,8 +44,8 @@ alwaysApply: true
 	- 나머지 브랜치는 브랜치 전략에 따라 생략하거나 추가한다는 점이 다를 뿐, `main` 브랜치를 올바르게 유지/보수한다는 점에서는 목표가 같다. 
 - `develop` 브랜치는 현재 개발중인 프로그램이다. `개발 > QA > 운영` 사이클에서 영구적으로 사용한다.
 - 개발기간 중에 새로 개발해야 하는 기능은 `feature/*` 에서 만든다. `develop` 브랜치에서 분기해서 `develop` 브랜치로 돌아간다.
-- QA기간은 그동안 개발한 내용을 검증하는 기간이다. 따라서 새로운 기능을 추가할 수 없다. 에러를 수정하는 것만 가능하다.
-- `release/*` 브랜치는 QA중인 프로그램을 담는 브랜치다. QA가 끝나면 `main` 브랜치와 `develop` 브랜치로 돌아간다.
+- QA기간은 그동안 개발한 내용을 검증하는 기간이다 추가할 수 없다. 에러를 수정하는 것만 가능하다.
+- `release/*` 브랜치는 QA중인 프로그램을 담는 브랜치다. QA가 끝나면 `maelop` 브랜치로 돌아간다.
 - `bugfix/*` 브랜치는 QA중인 프로그램의 수정사항을 담는 브랜치다.  `release/*` 브랜치에서 파생되어 `release/*` 브랜치로 돌아간다.
 - `hotfix/*` 브랜치는 운영중인 프로그램의 수정사항을 담는 브랜치다.  `main` 브랜치에서 파생된다. 수정이 끝나면  `main` 브랜치와 `develop` 브랜치로 돌아간다.
 
@@ -46,3 +63,16 @@ brew install git-flow-avh
 ```sh
 git flow init -d
 ```
+
+# git flow 명령 사용
+- 새로운 기능을 추가할 때는 아래의 git flow 명령어를 사용한다.
+	- `git flow feature start <새로운 기능>`
+
+| 브랜치 타입      | 용도             | 생성 위치           | 병합 위치                        | git 명령어                                                                                                                                                                                                                                                                                                    | 절차                                                                                                                                                                                                                                                                         | git-flow 명령어                                                                                    |
+| ----------- | -------------- | --------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `main`      | 운영중인 원본 소스 저장  | -               | -                            | `git checkout -b main`                                                                                                                                                                                                                                                                                     | 메인 브랜치 생성                                                                                                                                                                                                                                                                  | `git flow init -d`                                                                              |
+| `develop`   | 개발중인 최신 코드 저장  | -               | -                            | `git checkout -b develop`                                                                                                                                                                                                                                                                                  | 개발 브랜치 생성                                                                                                                                                                                                                                                                  | `git flow init -d`                                                                              |
+| `feature/*` | 새로운 기능 개발      | `develop`       | `develop`                    | 시작:<br>1. `git switch develop`<br>2. `git checkout -b feature/label`<br><br>종료:<br>1. `git switch develop`<br>2. `git merge feature/label`<br>3. `git branch -d feature/label`<br>4. `git switch develop`                                                                                                  | 시작: <br>1. `develop` 브랜치로 전환<br>2. `feature/*` 브랜치를 생성하고 전환<br><br>종료: <br>1. `develop` 로 전환<br>2. `feature/*`  브랜치를 `develop` 브랜치에 병합<br>3. `feature/*`브랜치 삭제<br>4.  `develop` 브랜치로 전환                                                                                    | 시작:<br>`git flow feature start label`<br><br>종료:<br>`git flow feature finish label`             |
+| `release/*` | QA 중인 버전 저장    | `develop`       | `develop`<br>`main`          | 시작:<br>1. `git switch develop`<br>2. `git checkout -b release/1.0.0`<br><br>종료:<br>1. `git switch main`<br>2. `git merge release/1.0.0`<br>3. `git tag v1.0.0`<br>4. `git switch develop`<br>5. `git merge release/1.0.0`<br>6. `git branch -d release/1.0.0`<br>7. `git switch develop`                   | 시작:<br>1. `develop` 브랜치로 전환<br>2. `release/*` 브랜치를 생성하고 전환<br><br>종료: <br>1. `main` 브랜치로 전환<br>2. `feature/*`  브랜치를  `main` 브랜치에 병합<br>3. 브랜치 이름으로 태그 생성<br>4. `develop` 으로 전환<br>5. `feature/*`  브랜치를  `develop` 브랜치에 병합<br>6. `feature/*` 브랜치 삭제<br>7. `develop` 브랜치로 전환 | 시작:<br>`git flow release start 1.0.0`<br><br>종료:<br>`git flow release finish 1.0.0`             |
+| `bugfix/*`  | QA 중 발견된 버그 수정 | 분기한 `release/*` | 분기한 `release/*`<br>`develop` | 시작:<br>1. `git switch release/1.0.0`<br>2. `git checkout -b bugfix/login`<br><br>종료:<br>1. `git switch release/1.0.0`<br>2. `git merge bugfix/login`<br>3. `git switch develop`<br>4. `git merge bugfix/login`<br>5. `git branch -d bugfix/login`<br>6. `git switch release/1.0.0`                         | 시작: <br>1. `release/*` 브랜치로 전환<br>2. `bugfix/*` 브랜치를 생성하고 전환<br><br>종료:<br>1. `release/*` 브랜치로 전환<br>2. `bugfix/*` 브랜치를 `release/*` 에 병합 <br>3. `develop` 브랜치로 전환<br>4. `bugfix/*` 브랜치를 `develop` 브랜치에 병합 <br>5. `bugfix/*` 브랜치를 삭제<br>6. `release/*` 브랜치로 전환              | 시작:<br>`git flow bugfix start login`<br><br>종료:<br>`git flow bugfix finish login`               |
+| `hotfix/*`  | 운영중 발생한 버그 수정  | `main`          | `main`<br>`develop`          | 시작:<br>1. `git switch main`<br>2. `git checkout -b hotfix/critical-fix`<br><br>종료:<br>1. `git switch main`<br>2. `git merge hotfix/critical-fix`<br>3. `git tag v1.0.1`<br>4. `git switch develop`<br>5. `git merge hotfix/critical-fix`<br>6. `git branch -d hotfix/critical-fix`<br>7. `git switch main` | 시작: <br>1. `main` 브랜치로 전환<br>2. `hotfix/*` 브랜치를 생성하고 전환<br><br>종료: <br>1. `main` 브랜치로 전환<br>2. `hotfix/*` 브랜치를 `main` 브랜치에 병합 <br>3. 브랜치 이름으로 태그 생성<br>4. `develop` 브랜치로 전환<br>5. `hotfix/*` 브랜치를 `develop` 에 병합 <br>6. `hotfix/*` 브랜치 삭제<br>7. `main` 브랜치로 전환             | 시작:<br>`git flow hotfix start critical-fix`<br><br>종료:<br>`git flow hotfix finish critical-fix` |

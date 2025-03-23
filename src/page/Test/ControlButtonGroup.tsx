@@ -4,6 +4,11 @@ import useTestParams from '@/page/Test/useTestParams.ts'
 import { AiOutlineHome, AiOutlineLink, AiOutlineRedo } from 'react-icons/ai'
 import useRootLoaderData from './useRootLoaderData'
 
+/**
+ * 결과 페이지의 컨트롤 버튼 그룹 컴포넌트
+ * URL 복사, 테스트 다시하기, 홈으로 이동 버튼을 제공합니다.
+ * @returns {JSX.Element} 컨트롤 버튼 그룹 UI 컴포넌트
+ */
 const ControlButtonGroup = () => {
   const navigate = useNavigate()
   const { lang } = useTestParams()

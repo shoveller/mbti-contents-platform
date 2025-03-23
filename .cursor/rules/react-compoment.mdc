@@ -10,8 +10,8 @@ alwaysApply: false
 - 파일 이름과 구성 요소 이름은 대문자로 시작해야 한다. 
 - 컴포넌트는 이름 없는 export 를 한다.
 
-## 다른 지시가 없을 경우의 컴포넌트 템플릿
-- 다른 지시가 없을 경우의 컴포넌트는 null을 반환해야 한다. 
+## 일반적인 컴포넌트 템플릿
+- 일반적인 컴포넌트는 null을 반환해야 한다. 
 ```tsx
 const ${Component name} = () => {
   return null
@@ -20,7 +20,8 @@ const ${Component name} = () => {
 export default ${Component name}
 ```
 
-## props 를 받는 경우의 컴포넌트 템플릿
+## props 를 받는 컴포넌트 템플릿
+- 일반적인 컴포넌트와 기본적인 지침은 같다.
 - props 타입은 반드시 `type` 지시어로 선언해야 한다.
 - props 타입은 `interface` 지시어로 선언하지 않는다.
 - props 타입의 이름은 `컴포넌트 이름 + Props` 라는 접미사를 붙이는 형태가 된다.
@@ -40,8 +41,8 @@ const ${Component name}: FC<${Component name}Props> = () => {
 export default ${Component name}
 ```
 
-## props + children 를 받는 경우의 컴포넌트 템플릿
-- `props 를 받는 경우의 컴포넌트 템플릿` 과 기본적인 지침은 같다.
+## props + children 를 받는 컴포넌트 템플릿
+- `props 를 받는 컴포넌트 템플릿` 과 기본적인 지침은 같다.
 - `children` 은 `FC` 타입, `PropsWithChildren` 타입으로 정의한다
 ```tsx
 import { FC, PropsWithChildren } from 'react'

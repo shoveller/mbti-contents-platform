@@ -2,6 +2,12 @@ import { useNavigate } from 'react-router'
 import useTestParams from './useTestParams'
 import useRootLoaderData from './useRootLoaderData'
 
+/**
+ * 테스트 소개 페이지 컴포넌트
+ * 테스트 제목, 부제목, 메인 이미지를 표시합니다.
+ * 이미지 클릭 시 테스트 퀴즈 페이지로 이동합니다.
+ * @returns {JSX.Element} 테스트 소개 UI 컴포넌트
+ */
 const Intro = () => {
   const loaderData = useRootLoaderData()
   const info = loaderData?.test?.info
