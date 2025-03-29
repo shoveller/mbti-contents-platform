@@ -7,16 +7,14 @@ import {
   Route,
   RouterProvider
 } from 'react-router'
-import RootLayout from '@/page/RootLayout.tsx'
 
 /**
  * 애플리케이션의 라우터 설정
  * 중첩된 라우트 구조를 정의하고 지연 로딩을 사용합니다.
- * @type {import('react-router').RemixRouter}
  */
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" lazy={() => import('@/page/Root')}>
       <Route index lazy={() => import('@/page/Main/Main.tsx')} />
       <Route
         path=":lang"
